@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Parents Control</string>
+    <string name="title_activity_ustawienia">Blokowanie dostępu</string>
+    <string name="dev1">Komputer - Stacjonarny</string>
+    <string name="dev2">Laptop - Toshiba</string>
+    <string name="dev3">Laptop - Compaq</string>
+    <string name="dev4">Telefon - Wojtek Junior</string>
+    <string name="dev5">Telefon - Gosia</string>
+    <string name="dev6">Tablet - Mateusz</string>
+    <string name="dev7">Telewizor - raspberryPi</string>
+    <string name="switch1">Filtrowanie treści</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
