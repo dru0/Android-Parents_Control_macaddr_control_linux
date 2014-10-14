@@ -57,16 +57,22 @@ public class Ustawienia extends Activity {
                             final CheckBox chk3 = (CheckBox) findViewById(R.id.checkBox3);
                             final CheckBox chk4 = (CheckBox) findViewById(R.id.checkBox4);
                             final CheckBox chk5 = (CheckBox) findViewById(R.id.checkBox5);
+                            String[] dtables = {"iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source 90:E6:BA:DE:E3:AE -j REJECT\n
+                                iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source B8:76:3F:9F:D7:21 -j REJECT\n
+                                iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source D0:51:62:2B:D4:CD -j REJECT\n
+                                iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source d0:51:62:2b:d4:cd -j REJECT\n"};
+                            
+                            
 
                             SessionChannelClient session = ssh.openSessionChannel();
                             session.startShell();
                             if (TB1.isChecked()) {
                                 session.getOutputStream().write("iptables -t nat -A PREROUTING -i br-lan ! -s 192.168.76.1 -p tcp --dport 80 -j DNAT --to-destination 192.168.76.1:8088".getBytes());
                             }
-                            session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source 90:E6:BA:DE:E3:AE -j REJECT\n".getBytes());
-                            session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source B8:76:3F:9F:D7:21 -j REJECT\n".getBytes());
-                            session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source D0:51:62:2B:D4:CD -j REJECT\n".getBytes());
-                            session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source d0:51:62:2b:d4:cd -j REJECT\n".getBytes());
+                            //session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source 90:E6:BA:DE:E3:AE -j REJECT\n".getBytes());
+                            //session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source B8:76:3F:9F:D7:21 -j REJECT\n".getBytes());
+                            //session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source D0:51:62:2B:D4:CD -j REJECT\n".getBytes());
+                            //session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source d0:51:62:2b:d4:cd -j REJECT\n".getBytes());
                             if (chk1.isChecked()) {
                                 session.getOutputStream().write("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source 90:E6:BA:DE:E3:AE -j REJECT\n".getBytes());
                                 session.getOutputStream().write("iptables -I INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source 90:E6:BA:DE:E3:AE -j REJECT\n".getBytes());
