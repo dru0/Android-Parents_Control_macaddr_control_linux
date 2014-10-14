@@ -15,64 +15,109 @@
         android:layout_height="fill_parent"
         android:weightSum="1">
 
-        <CheckBox
-            android:layout_width="221dp"
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dev1"
             android:id="@+id/checkBox"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="right"
 
-        <CheckBox
-            android:layout_width="wrap_content"
+            android:enabled="true"
+            android:checked="true" />
+
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dev2"
             android:id="@+id/checkBox2"
             android:layout_below="@+id/checkBox"
             android:layout_alignLeft="@+id/checkBox"
 
-     />
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dev3"
             android:id="@+id/checkBox3"
             android:layout_below="@+id/checkBox2"
-            android:layout_alignLeft="@+id/checkBox2"         />
+            android:layout_alignLeft="@+id/checkBox2"
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dev4"
             android:id="@+id/checkBox4"
             android:layout_below="@+id/checkBox3"
             android:layout_alignLeft="@+id/checkBox3"
-             />
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dev5"
             android:id="@+id/checkBox5"
             android:layout_below="@+id/checkBox4"
             android:layout_alignLeft="@+id/checkBox4"
-             />
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Switch
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dev7"
+            android:text="@string/dev6"
             android:id="@+id/checkBox6"
             android:layout_below="@+id/checkBox5"
-            android:layout_alignLeft="@+id/checkBox5" />
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dev7"
+            android:id="@+id/checkBox7"
+            android:layout_gravity="right"
+            android:enabled="true"
+            android:checked="true" />
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch1"
+            android:id="@+id/switch1"
+            android:layout_below="@+id/editText"
+            android:layout_alignLeft="@+id/checkBox6"
+            android:gravity="bottom" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zastosuj"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="338dp"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:weightSum="1"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:layout_weight="0.11">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,33 +132,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
-                android:text="@string/hostname"
+                android:text="kj125.mooo.com"
                 android:focusable="true"
                 android:editable="true"
                 android:contentDescription="Adres IP lub domena internetowa"
                 android:layout_alignTop="@+id/editText2"
                 android:layout_alignRight="@+id/switch1" />
         </LinearLayout>
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/switch1"
-            android:id="@+id/switch1"
-            android:layout_below="@+id/editText"
-            android:layout_alignLeft="@+id/checkBox6"
-            android:gravity="bottom"
-            android:layout_marginLeft="15dp" />
-
-        <Button
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
-            android:text="Zastosuj"
-            android:id="@+id/button"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp" />
     </LinearLayout>
 
 </RelativeLayout>

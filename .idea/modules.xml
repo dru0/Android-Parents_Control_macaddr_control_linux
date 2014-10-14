@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-Parents_Control_macaddr_control_linux.iml" filepath="$PROJECT_DIR$/Android-Parents_Control_macaddr_control_linux.iml" />
       <module fileurl="file://$PROJECT_DIR$/ParentsControl.iml" filepath="$PROJECT_DIR$/ParentsControl.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
