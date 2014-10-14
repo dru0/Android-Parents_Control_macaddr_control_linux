@@ -32,4 +32,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:20.0.0'
     compile 'sshtools:j2ssh-common:0.2.9'
     compile 'sshtools:j2ssh-core:0.2.9'
+    compile 'com.android.support:support-v4:20.0.0'
 }

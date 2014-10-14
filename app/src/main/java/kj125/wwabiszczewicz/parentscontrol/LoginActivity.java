@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -126,11 +125,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        }
+        /*else if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        }
+        }*/
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -287,8 +287,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             showProgress(false);
 
             if (success) {
-                Intent UstawieniaIntent = new Intent(getApplicationContext(),Ustawienia.class);
-                startActivity(UstawieniaIntent);
+                Intent AccessIntent = new Intent(getApplicationContext(),AccessActivity.class);
+                startActivity(AccessIntent);
                  finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

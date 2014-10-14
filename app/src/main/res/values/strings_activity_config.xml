@@ -1,0 +1,16 @@
+<resources>
+        <string name="title_activity_config">Ustawienia</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_hostname">Hostname</string>
+    <string name="pref_default_hostname">192.168.0.1</string>
+    <string name="pref_title_login">Login</string>
+    <string name="pref_default_login">---</string>
+    <string name="pref_title_password">Hasło</string>
+    <string name="pref_default_password">----</string>
+
+
+</resources>

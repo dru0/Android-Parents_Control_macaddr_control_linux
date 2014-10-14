@@ -1,16 +1,18 @@
 package kj125.wwabiszczewicz.parentscontrol;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.sshtools.j2ssh.*;
 import com.sshtools.j2ssh.authentication.PasswordAuthenticationClient;
@@ -20,18 +22,18 @@ import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
 import java.io.IOException;
 
 
-public class Ustawienia extends Activity {
+public class AccessActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ustawienia);
+        final EditText txtHost = (EditText) findViewById(R.id.editText);
+        setContentView(R.layout.activity_access);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         Button ButtonAppy = (Button) findViewById(R.id.button);
-        final EditText txtHost = (EditText) findViewById(R.id.editText);
         final Switch TB1 = (Switch) findViewById(R.id.switch1);
-
         ButtonAppy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +124,12 @@ public class Ustawienia extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent ConfigIntent = new Intent(getApplicationContext(), ConfigActivity.class);
+            startActivity(ConfigIntent);
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            final EditText txtHost = (EditText) findViewById(R.id.editText);
+            txtHost.setText(sharedPrefs.getString("hostname_text","NULL"));
+
             return true;
         }
         return super.onOptionsItemSelected(item);
