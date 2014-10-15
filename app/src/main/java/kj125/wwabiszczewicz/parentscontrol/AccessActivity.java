@@ -40,14 +40,14 @@ public class AccessActivity extends Activity {
                     public void run() {
                         SshClient ssh = new SshClient();
                         try {
-                            ssh.connect("192.168.76.1", new IgnoreHostKeyVerification());
+                            ssh.connect("------", new IgnoreHostKeyVerification());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         try {
                             PasswordAuthenticationClient sshpass = new PasswordAuthenticationClient();
-                            sshpass.setUsername("root");
-                            sshpass.setPassword("okidoki9");
+                            sshpass.setUsername("----");
+                            sshpass.setPassword("----");
                             ssh.authenticate(sshpass);
                         } catch (IOException e) {
                             e.printStackTrace();
