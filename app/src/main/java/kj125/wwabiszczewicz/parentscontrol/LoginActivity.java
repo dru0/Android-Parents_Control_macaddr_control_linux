@@ -37,7 +37,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     /**
      * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
+     * ODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "tata:aaaa", "mama:aaaa"
@@ -145,12 +145,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         }
     }
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 3;
     }
 
@@ -260,8 +258,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -276,8 +272,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                     return pieces[1].equals(mPassword);
                 }
             }
-
-            // TODO: register the new account here.
+            // For testing always success login
             return true;
         }
 
