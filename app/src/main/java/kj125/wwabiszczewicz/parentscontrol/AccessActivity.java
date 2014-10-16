@@ -12,8 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.sshtools.j2ssh.*;
+import com.sshtools.j2ssh.authentication.AuthenticationProtocolState;
 import com.sshtools.j2ssh.authentication.PasswordAuthenticationClient;
 import com.sshtools.j2ssh.session.SessionChannelClient;
 import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
@@ -24,31 +26,44 @@ import java.io.IOException;
 public class AccessActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        final String[] connectState = {new String()};
+        final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         super.onCreate(savedInstanceState);
-        final EditText txtHost = (EditText) findViewById(R.id.editText);
         setContentView(R.layout.activity_access);
+        final EditText txtHost = (EditText) findViewById(R.id.editText);
+        Button ButtonAppy = (Button) findViewById(R.id.button);
+        final Switch TB1 = (Switch) findViewById(R.id.switch1);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Button ButtonAppy = (Button) findViewById(R.id.button);
-        final Switch TB1 = (Switch) findViewById(R.id.switch1);
+
         ButtonAppy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                final String password_prefs = sharedPrefs.getString("password_text", "");
+                final String hostname_prefs = sharedPrefs.getString("hostname_text", "192.168.0.1");
+                final String login_prefs = sharedPrefs.getString("login_text", "root");
                 new Thread(new Runnable() {
                     public void run() {
                         SshClient ssh = new SshClient();
                         try {
-                            ssh.connect("------", new IgnoreHostKeyVerification());
+                            System.out.print(password_prefs);
+                            ssh.connect(hostname_prefs, new IgnoreHostKeyVerification());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         try {
                             PasswordAuthenticationClient sshpass = new PasswordAuthenticationClient();
-                            sshpass.setUsername("----");
-                            sshpass.setPassword("----");
-                            ssh.authenticate(sshpass);
+                            System.out.print(password_prefs);
+                            System.out.print(hostname_prefs);
+                            sshpass.setUsername(login_prefs);
+                            sshpass.setPassword(password_prefs);
+                            int isConnected = ssh.authenticate(sshpass);
+                            if (isConnected == AuthenticationProtocolState.COMPLETE)
+                                connectState[0] = "Połączony z hostem. Aktywowanie zasad dostępu.";
+                            else
+                                connectState[0] = "Problem z połączeniem.\nSprawdz czy login i hasło są poprawne.";
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -70,10 +85,10 @@ public class AccessActivity extends Activity {
                                 session.getOutputStream().write("iptables -t nat -A PREROUTING -i br-lan ! -s 192.168.76.1 -p tcp --dport 80 -j DNAT --to-destination 192.168.76.1:8088".getBytes());
                             }
                             itables = itables + iptablesRule(chk1, "90:E6:BA:DE:E3:AE");
-                            itables = itables + iptablesRule(chk2, "B8:76:3F:9F:D7:21");
-                            itables = itables + iptablesRule(chk3, "D0:51:62:2B:D4:CD");
-                            itables = itables + iptablesRule(chk4, "00:21:6B:3B:16:D2");
-                            itables = itables + iptablesRule(chk5, "B8:76:3F:9F:D7:21");
+                            itables = itables + iptablesRule(chk2, "00:21:6B:3B:16:D2");
+                            itables = itables + iptablesRule(chk3, "B8:76:3F:9F:D7:21");
+                            itables = itables + iptablesRule(chk4, "D0:51:62:2B:D4:CD");
+                            itables = itables + iptablesRule(chk5, "d0:51:62:2b:d4:cd");
                             itables = itables + iptablesRule(chk7, "b8:27:eb:d1:c9:93");
 
                             System.out.print(itables);
@@ -85,6 +100,7 @@ public class AccessActivity extends Activity {
                         }
                     }
                     }).start();
+                Toast.makeText(getApplicationContext(), connectState[0], Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -114,11 +130,7 @@ public class AccessActivity extends Activity {
         if (id == R.id.action_settings) {
             Intent ConfigIntent = new Intent(getApplicationContext(), ConfigActivity.class);
             startActivity(ConfigIntent);
-            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-            final EditText txtHost = (EditText) findViewById(R.id.editText);
-            txtHost.setText(sharedPrefs.getString("hostname_text","NULL"));
-            //TODO: Apply sharedprefs
-            return true;
+            final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         }
         return super.onOptionsItemSelected(item);
     }
