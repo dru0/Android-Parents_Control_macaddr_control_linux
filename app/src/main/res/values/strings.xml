@@ -8,9 +8,10 @@
     <string name="dev3">Laptop - Compaq</string>
     <string name="dev4">Telefon - Wojtek Junior</string>
     <string name="dev5">Telefon - Gosia</string>
-    <string name="dev6">Tablet - Mateusz</string>
+    <string name="dev6">Telefon - Mateusz</string>
     <string name="dev7">Telewizor - raspberryPi</string>
     <string name="switch1">Filtrowanie treści</string>
     <string name="action_settings">Ustawienia</string>
+    <string name="action_author">Autor</string>
 
 </resources>
