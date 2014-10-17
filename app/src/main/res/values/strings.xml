@@ -12,5 +12,6 @@
     <string name="dev7">Telewizor - raspberryPi</string>
     <string name="switch1">Filtrowanie treści</string>
     <string name="action_settings">Ustawienia</string>
+    <string name="action_author">Autor</string>
 
 </resources>

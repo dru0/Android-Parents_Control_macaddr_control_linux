@@ -36,7 +36,7 @@ public class AccessActivity extends Activity {
         Button ButtonAppy = (Button) findViewById(R.id.button);
         final Switch TB1 = (Switch) findViewById(R.id.switch1);
 
-        final String[] MACS = {"90:E6:BA:DE:E3:AE","00:21:6B:3B:16:D2","B8:76:3F:9F:D7:21","D0:51:62:2B:D4:CD","d0:51:62:2b:d4:cd", "b8:27:eb:d1:c9:93"};
+        final String[] MACS = {"90:E6:BA:DE:E3:AE","00:21:6B:3B:16:D2","B8:76:3F:9F:D7:21","D0:51:62:2B:D4:CD","ff:ff:ff:ff:d4:cd", "b8:27:eb:d1:c9:93"};
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -99,16 +99,16 @@ public class AccessActivity extends Activity {
                             itables = itables + iptablesRule(chk5, MACS[4]);
                             itables = itables + iptablesRule(chk7, MACS[5]);
 
-                            System.out.print(itables);
-                            //session.getOutputStream().write(itables.getBytes());
+                            //System.out.print(itables);
+                            session.executeCommand(itables);
                             String mactxt = "";
                             for(String macn:MACS) {
-                                mactxt+="iptables -L|grep -q "+macn+" && "+macn+";";
+                                mactxt+="iptables -L|grep -q "+macn+" && echo "+macn+";";
                             }
                             //System.out.print(mactxt);
                             session.executeCommand(mactxt);
                             InputStream in = session.getInputStream();
-                            byte buffer[] = new byte[256];
+                            byte buffer[] = new byte[512];
                             int read;
                             while((read = in.read(buffer)) > 0) {
                                 String out = new String(buffer, 0, read);
@@ -131,9 +131,9 @@ public class AccessActivity extends Activity {
     public String iptablesRule(Switch sw, String mac) {
         String tab;
         if (!sw.isChecked())
-            tab = ("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT\niptables -I INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT\n");
+            tab = ("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT;iptables -I INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT;");
         else {
-            tab = ("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT\n");
+            tab = ("iptables -D INPUT -m state --state NEW,ESTABLISHED,RELATED -m mac --mac-source " + mac + " -j REJECT;");
         }
         return tab;
     }
@@ -154,6 +154,9 @@ public class AccessActivity extends Activity {
             Intent ConfigIntent = new Intent(getApplicationContext(), ConfigActivity.class);
             startActivity(ConfigIntent);
             final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        }
+        if (id == R.id.action_author) {
+            Toast.makeText(getApplicationContext(), "druss0@poczta.onet.pl", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }
