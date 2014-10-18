@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="macpref_list">
+        <item>90:E6:BA:DE:E3:AE</item>
+        <item>00:21:6B:3B:16:D2</item>
+        <item>B8:76:3F:9F:D7:21</item>
+        <item>D0:51:62:2B:D4:CD</item>
+        <item>D0:C1:B1:3D:B9:71</item>
+        <item>b8:27:eb:d1:c9:93</item>
+        <item>50:FC:9F:BF:BB:B2</item>
+    </string-array>
+    <string-array name="macpref_text">
+        <item>Komputer - Stacjonarny\n 90:E6:BA:DE:E3:AE</item>
+        <item name="dev2">Laptop - Toshiba\n 00:21:6B:3B:16:D2</item>
+        <item name="dev3">Laptop - Compaq\n B8:76:3F:9F:D7:21</item>
+        <item name="dev4">Telefon - Wojtek Junior\n D0:51:62:2B:D4:CD</item>
+        <item name="dev5">Telefon - Gosia\n D0:C1:B1:3D:B9:71</item>
+        <item name="dev6">Telefon - Mateusz\n b8:27:eb:d1:c9:93</item>
+        <item name="dev7">Telewizor - raspberryPi\n 50:FC:9F:BF:BB:B2</item>
+    </string-array>
+</resources>

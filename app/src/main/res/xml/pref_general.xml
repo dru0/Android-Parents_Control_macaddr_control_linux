@@ -33,6 +33,12 @@
         android:singleLine="true"
         android:maxLines="1"
         android:summary="Hasło do logowanie po przez ssh"/>
+    <ListPreference
+        android:key="macaddr_list"
+        android:title="Adresy MAC"
+        android:summary="Lista adresów mac"
+        android:entries="@array/macpref_text"
+        android:entryValues="@array/macpref_list" />
 
 
 </PreferenceScreen>
