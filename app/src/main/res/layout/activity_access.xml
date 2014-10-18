@@ -101,10 +101,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="30dp"
                 android:checked="true"
                 android:enabled="true"
                 android:text="@string/dev7" />
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:checked="false"
+                android:enabled="true"
+                android:text="@string/switch2" />
 
             <Switch
                 android:id="@+id/switch1"
@@ -112,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/checkBox6"
                 android:layout_below="@+id/editText"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="10dp"
                 android:gravity="bottom"
                 android:text="@string/switch1" />
 

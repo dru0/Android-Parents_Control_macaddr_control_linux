@@ -36,7 +36,8 @@ public class AccessActivity extends Activity {
         final EditText txtHost = (EditText) findViewById(R.id.editText);
         Button ButtonAppy = (Button) findViewById(R.id.button);
         final Switch TB1 = (Switch) findViewById(R.id.switch1);
-
+        final Switch TB2 = (Switch) findViewById(R.id.switch2);
+        final String[] firestart = {""};
         final String[] MACS = {"90:E6:BA:DE:E3:AE","00:21:6B:3B:16:D2","B8:76:3F:9F:D7:21","D0:51:62:2B:D4:CD","D0:C1:B1:3D:B9:71", "b8:27:eb:d1:c9:93","50:FC:9F:BF:BB:B2"};
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -93,6 +94,9 @@ public class AccessActivity extends Activity {
                             if (TB1.isChecked()) {
                                 session.getOutputStream().write("iptables -t nat -A PREROUTING -i br-lan ! -s 192.168.76.1 -p tcp --dport 80 -j DNAT --to-destination 192.168.76.1:8088".getBytes());
                             }
+                            if (TB2.isChecked()) {
+                                firestart[0] = "/etc/init.d/firewall restart";
+                            } else firestart[0] = "";
                             itables = itables + iptablesRule(chk1, MACS[0]);
                             itables = itables + iptablesRule(chk2, MACS[1]);
                             itables = itables + iptablesRule(chk3, MACS[2]);
@@ -102,13 +106,17 @@ public class AccessActivity extends Activity {
                             itables = itables + iptablesRule(chk7, MACS[6]);
 
                             //System.out.print(itables);
-                            session.executeCommand(itables);
+                            session.executeCommand(itables + firestart[0]);
+                            session.close();
                             String mactxt = "";
                             for(String macn:MACS) {
-                                mactxt+="iptables -L|grep -q "+macn+" && echo "+macn+";";
+                                //mactxt+="iptables -L|grep -q "+macn+" && echo "+macn+";";
+                                mactxt = "echo Albert";
                             }
                             //System.out.print(mactxt);
-                            session.executeCommand(mactxt);
+                            SessionChannelClient session2 = ssh.openSessionChannel();
+                            session2.executeCommand(mactxt);
+                            //session.getOutputStream().write(mactxt.getBytes());
                             InputStream in = session.getInputStream();
                             byte buffer[] = new byte[512];
                             int read;
@@ -116,15 +124,16 @@ public class AccessActivity extends Activity {
                                 String out = new String(buffer, 0, read);
                                 System.out.println(out);
                             }
-
+                            session2.close();
                             in.close();
-                            session.close();
+
                             ssh.disconnect();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                     }).start();
+                TB2.setChecked(false);
                 Toast MsgBox = Toast.makeText(getApplicationContext(), connectState[0], Toast.LENGTH_SHORT);
                 MsgBox.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 150);
                 MsgBox.show();
