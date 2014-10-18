@@ -82,7 +82,7 @@
                 android:layout_gravity="right"
                 android:layout_marginBottom="10dp"
                 android:checked="true"
-                android:enabled="true"
+                android:enabled="false"
                 android:text="@string/dev5" />
 
             <Switch
@@ -93,7 +93,7 @@
                 android:layout_gravity="right"
                 android:layout_marginBottom="10dp"
                 android:checked="true"
-                android:enabled="true"
+                android:enabled="false"
                 android:text="@string/dev6" />
 
             <Switch
